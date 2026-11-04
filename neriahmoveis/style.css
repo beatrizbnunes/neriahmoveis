@@ -1,0 +1,1882 @@
+   /* =========================================
+   NERIAH MÓVEIS - CSS COMPLETO
+========================================= */
+
+/* CONFIGURAÇÕES GERAIS */
+
+:root {
+    --laranja: #ff7a1a;
+    --laranja-escuro: #e66a00;
+    --marrom: #45372d;
+    --branco: #ffffff;
+    --escuro: #222222;
+
+    --cor-fundo-1: #ffe7d5;
+    --cor-fundo-2: #fff2e7;
+    --cor-fundo-3: #f8d9c3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 30px;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    font-family: 'Poppins', sans-serif;
+    color: var(--marrom);
+
+    background: linear-gradient(
+        135deg,
+        var(--cor-fundo-1),
+        var(--cor-fundo-2),
+        var(--cor-fundo-3)
+    );
+
+    background-attachment: fixed;
+    text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+section {
+    padding: 65px 5%;
+}
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+header {
+    width: 100%;
+    padding: 18px 5%;
+
+    background: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 45px;
+
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    display: block;
+    width: 180px;
+    height: auto;
+    margin: 0 auto;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+nav a {
+    position: relative;
+
+    color: #222;
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    transition: color 0.3s ease;
+}
+
+nav a::after {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--laranja);
+
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+nav a:hover,
+nav a.menu-ativo {
+    color: var(--laranja);
+}
+
+nav a:hover::after,
+nav a.menu-ativo::after {
+    width: 100%;
+}
+
+/* =========================================
+   BANNER PRINCIPAL
+========================================= */
+
+#inicio {
+    min-height: 85vh;
+    padding: 80px 5%;
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.63),
+            rgba(0,0,0,0.54)
+        ),
+        url("banner.jpeg");
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.hero-conteudo {
+    max-width: 1050px;
+    width: 100%;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#inicio h1 {
+    font-family: 'Bebas Neue', sans-serif;
+
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 400;
+
+    letter-spacing: 2px;
+    line-height: 1.1;
+
+    color: white;
+    margin-bottom: 20px;
+
+    text-align: center;
+}
+
+#inicio p {
+    max-width: 650px;
+
+    margin: 0 auto 30px;
+
+    font-family: 'Karla', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.8;
+
+    color: white;
+    text-align: center;
+}
+
+/* =========================================
+   EFEITO DE DIGITAÇÃO NO TÍTULO
+========================================= */
+
+/* Esconde o texto só até o JavaScript preparar o efeito.
+   Se o script não carregar, o texto aparece sozinho após 3s. */
+.js .td-texto:not(.td-pronto) {
+    visibility: hidden;
+    animation: tdSeguranca 0s linear 3s forwards;
+}
+
+@keyframes tdSeguranca {
+    to { visibility: visible; }
+}
+
+.td-palavra {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.td-letra {
+    opacity: 0;
+}
+
+.td-letra.on {
+    opacity: 1;
+}
+
+.td-cursor {
+    position: relative;
+
+    display: inline-block;
+    width: 0;
+    height: 1em;
+
+    vertical-align: baseline;
+}
+
+.td-cursor::after {
+    content: "";
+
+    position: absolute;
+    left: 3px;
+    bottom: 0.04em;
+
+    width: 3px;
+    height: 0.9em;
+
+    background: var(--laranja);
+
+    animation: tdPiscar 0.8s steps(1) infinite;
+}
+
+.td-cursor.oculto::after {
+    animation: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+@keyframes tdPiscar {
+    50% { opacity: 0; }
+}
+
+/* =========================================
+   BOTÕES
+========================================= */
+
+.botao,
+.info-botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    background: var(--laranja);
+    color: white;
+
+    padding: 14px 26px;
+
+    border: none;
+    border-radius: 9px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    text-align: center;
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.botao:hover,
+.info-botao:hover {
+    background: var(--laranja-escuro);
+    color: white;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 20px rgba(255,122,26,0.25);
+}
+
+/* =========================================
+   TÍTULOS E DIVISORES
+========================================= */
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+
+    width: 100%;
+    margin: 0 auto 35px;
+
+    text-align: center;
+    font-size: 2rem;
+
+    color: #1f1814;
+}
+
+.titulo::before,
+.titulo::after {
+    content: "";
+
+    display: block;
+
+    width: 65px;
+    height: 2px;
+    flex-shrink: 0;
+
+    background: var(--laranja);
+}
+
+.divisor {
+    width: 65px;
+    height: 3px;
+
+    margin: 25px auto;
+
+    background: linear-gradient(
+        to right,
+        transparent,
+        #5c483a,
+        transparent
+    );
+}
+
+/* =========================================
+   SOBRE NÓS
+========================================= */
+
+#sobre {
+    text-align: center;
+}
+
+#sobre p {
+    max-width: 800px;
+
+    margin: 0 auto 18px;
+
+    font-size: 1rem;
+    line-height: 1.9;
+
+    text-align: center;
+}
+
+/* =========================================
+   GALERIA DE PRODUTOS
+========================================= */
+
+#galeria {
+    text-align: center;
+}
+
+.galeria {
+    max-width: 1300px;
+
+    margin: 30px auto 0;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    justify-content: center;
+    align-items: stretch;
+
+    gap: 22px;
+}
+
+.card {
+    min-width: 0;
+    overflow: hidden;
+
+    background: white;
+
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+
+    box-shadow: 0 12px 28px rgba(0,0,0,0.13);
+}
+
+.card img {
+    display: block;
+
+    width: 100%;
+    height: 270px;
+
+    object-fit: cover;
+    cursor: zoom-in;
+
+    transition: transform 0.4s ease;
+}
+
+.card:hover img {
+    transform: scale(1.04);
+}
+
+.card img:focus-visible {
+    outline: 3px solid var(--laranja);
+    outline-offset: -3px;
+}
+
+.card h3 {
+    width: 100%;
+
+    margin-top: auto;
+    padding: 18px 12px;
+
+    font-size: 1.1rem;
+    color: #1f1814;
+
+    text-align: center;
+}
+
+.galeria-rodape {
+    margin: 35px auto 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+/* =========================================
+   CATÁLOGO DE CORES - MOSTRUÁRIO DE TECIDOS
+========================================= */
+
+.catalogo-cores {
+    width: 100%;
+    padding: 75px 5%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.catalogo-cores .titulo {
+    margin-bottom: 20px;
+}
+
+.catalogo-descricao {
+    max-width: 700px;
+
+    margin: 0 auto 40px;
+
+    color: #806e61;
+    font-size: 1rem;
+    line-height: 1.8;
+
+    text-align: center;
+}
+
+/* SETA - AMOSTRA - SETA */
+
+.neriah-palco {
+    width: 100%;
+    max-width: 640px;
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: auto minmax(0, 440px) auto;
+    align-items: center;
+    justify-content: center;
+
+    gap: clamp(10px, 3vw, 28px);
+}
+
+/* AMOSTRA PRINCIPAL */
+
+.neriah-livro {
+    --raio: 16px;
+
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 4 / 5;
+
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+
+    outline: none;
+}
+
+.neriah-livro:focus-visible {
+    outline: 3px solid var(--laranja);
+    outline-offset: 6px;
+    border-radius: var(--raio);
+}
+
+.neriah-base {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    border-radius: var(--raio);
+    background: #e8dfd5;
+
+    box-shadow:
+        0 18px 40px rgba(69, 55, 45, 0.22),
+        0 3px 8px rgba(69, 55, 45, 0.12);
+}
+
+.neriah-base img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    pointer-events: none;
+}
+
+.neriah-base::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+    pointer-events: none;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.16),
+        transparent 42%,
+        rgba(0,0,0,0.06)
+    );
+
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3);
+}
+
+.neriah-sombra-base {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    border-radius: var(--raio);
+    pointer-events: none;
+}
+
+/* FOLHA QUE VIRA (criada pelo JavaScript) */
+
+.neriah-folha {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+
+    display: none;
+    pointer-events: none;
+
+    perspective: calc(var(--bw, 400px) * 3);
+    perspective-origin: 50% 45%;
+}
+
+.neriah-faixa {
+    position: absolute;
+    top: 0;
+
+    width: calc(var(--sw, 30px) + 0.5px);
+    height: 100%;
+
+    transform-style: preserve-3d;
+}
+
+.neriah-folha--esq .neriah-faixa {
+    left: 0;
+    transform-origin: 0 50%;
+}
+
+.neriah-folha--esq .neriah-faixa .neriah-faixa {
+    left: calc(100% - 0.5px);
+}
+
+.neriah-folha--dir .neriah-faixa {
+    right: 0;
+    transform-origin: 100% 50%;
+}
+
+.neriah-folha--dir .neriah-faixa .neriah-faixa {
+    right: calc(100% - 0.5px);
+}
+
+.neriah-face {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.neriah-face-verso {
+    transform: rotateY(180deg);
+}
+
+.neriah-face img {
+    position: absolute;
+    top: 0;
+    left: calc(var(--fatia, 0) * var(--sw, 30px) * -1);
+
+    display: block;
+
+    width: var(--bw, 400px);
+    height: var(--bh, 500px);
+    max-width: none;
+
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.neriah-luz {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.neriah-face.borda-e {
+    border-top-left-radius: var(--raio);
+    border-bottom-left-radius: var(--raio);
+}
+
+.neriah-face.borda-d {
+    border-top-right-radius: var(--raio);
+    border-bottom-right-radius: var(--raio);
+}
+
+/* SETAS */
+
+.neriah-seta {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #bd9e86;
+    border-radius: 50%;
+
+    background: #fffaf4;
+    color: #704d39;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 12px rgba(69, 55, 45, 0.12);
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.neriah-seta svg {
+    width: 22px;
+    height: 22px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.neriah-seta:hover {
+    background: var(--laranja);
+    border-color: var(--laranja);
+    color: #fff;
+
+    transform: scale(1.07);
+}
+
+.neriah-seta:active {
+    transform: scale(0.95);
+}
+
+.neriah-seta:focus-visible {
+    outline: 3px solid var(--laranja);
+    outline-offset: 3px;
+}
+
+/* NOME, CÓDIGO E CONTADOR */
+
+.neriah-detalhes {
+    margin-top: 28px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    text-align: center;
+}
+
+.neriah-detalhes h3 {
+    font-size: 1.7rem;
+    color: #45372d;
+}
+
+.neriah-codigo {
+    color: #806a5b;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.neriah-contador {
+    margin-top: 4px;
+
+    color: #a48a75;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+}
+
+/* MINIATURAS */
+
+.neriah-miniaturas {
+    position: relative;
+
+    width: fit-content;
+    max-width: 100%;
+
+    margin: 18px auto 0;
+    padding: 10px 8px 14px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+.neriah-miniatura {
+    flex: 0 0 auto;
+
+    width: 58px;
+    height: 58px;
+    padding: 0;
+
+    overflow: hidden;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #e8dfd5;
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.neriah-miniatura img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.neriah-miniatura:hover {
+    transform: translateY(-3px);
+}
+
+.neriah-miniatura.ativa {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 0 2px #fff,
+        0 0 0 4px var(--laranja);
+}
+
+.neriah-miniatura:focus-visible {
+    outline: 3px solid var(--laranja);
+    outline-offset: 2px;
+}
+
+.catalogo-aviso {
+    max-width: 700px;
+
+    margin: 15px auto 0;
+
+    color: #9b897a;
+    font-size: 0.8rem;
+    line-height: 1.7;
+
+    text-align: center;
+}
+
+/* =========================================
+   LOCALIZAÇÃO E CONTATO
+========================================= */
+
+.informacoes-container {
+    max-width: 1150px;
+
+    margin: 50px auto 65px;
+    padding: 0 25px;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    align-items: stretch;
+    justify-content: center;
+
+    gap: 30px;
+}
+
+.informacoes-container .info-card {
+    min-width: 0;
+    width: 100%;
+
+    margin: 0;
+    padding: 35px 30px;
+
+    background: #fff8f1;
+
+    border: 1px solid #f0dfce;
+    border-radius: 18px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.informacoes-container .info-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+.info-card .titulo {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+}
+
+.info-card .titulo::before,
+.info-card .titulo::after {
+    width: 38px;
+}
+
+.info-conteudo {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+
+    text-align: center;
+}
+
+.info-conteudo p {
+    margin: 0;
+
+    font-size: 0.95rem;
+    line-height: 1.9;
+
+    overflow-wrap: anywhere;
+    text-align: center;
+}
+
+.info-icone {
+    width: 35px;
+    flex-shrink: 0;
+
+    color: var(--laranja);
+    font-size: 28px;
+
+    text-align: center;
+}
+
+.info-card > .info-botao {
+    margin-top: auto;
+    align-self: center;
+}
+
+.contato-botoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: auto;
+}
+
+/* =========================================
+   RODAPÉ
+========================================= */
+
+footer {
+    width: 100%;
+
+    padding: 50px 5% 25px;
+
+    background: #222;
+    color: white;
+
+    text-align: center;
+}
+
+.footer-container {
+    max-width: 1300px;
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    justify-content: center;
+    align-items: start;
+
+    gap: 35px;
+}
+
+footer h3,
+footer h4 {
+    color: var(--laranja);
+
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+footer h3 {
+    font-size: 1.4rem;
+}
+
+footer h4 {
+    font-size: 1.1rem;
+}
+
+footer p {
+    color: #eeeeee;
+
+    font-size: 0.9rem;
+    line-height: 1.8;
+
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.sociais {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.sociais a {
+    color: var(--laranja);
+    font-size: 30px;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.sociais a:hover {
+    color: white;
+
+    transform: translateY(-3px);
+}
+
+.copyright {
+    margin-top: 40px;
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255,255,255,0.2);
+
+    text-align: center;
+    color: #cccccc;
+
+    font-size: 0.85rem;
+}
+
+/* =========================================
+   ANIMAÇÕES DO JAVASCRIPT
+========================================= */
+
+.revelar {
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.revelar.visivel {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+/* =========================================
+   GALERIA AMPLIADA
+========================================= */
+
+#visor-fotos-neriah {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    padding: 60px 20px;
+
+    background: rgba(0,0,0,0.92);
+}
+
+#visor-fotos-neriah.aberto {
+    display: flex;
+}
+
+#foto-ampliada-neriah {
+    display: block;
+
+    max-width: 85%;
+    max-height: 85vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+}
+
+#fechar-visor-neriah {
+    position: absolute;
+
+    top: 15px;
+    right: 25px;
+
+    z-index: 3;
+
+    border: none;
+    background: transparent;
+
+    color: white;
+    font-size: 45px;
+
+    cursor: pointer;
+
+    transition: color 0.3s ease;
+}
+
+#fechar-visor-neriah:hover {
+    color: var(--laranja);
+}
+
+#foto-anterior-neriah,
+#foto-proxima-neriah {
+    position: absolute;
+
+    top: 50%;
+    z-index: 2;
+
+    transform: translateY(-50%);
+
+    width: 48px;
+    height: 48px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.15);
+
+    color: white;
+    font-size: 28px;
+
+    cursor: pointer;
+
+    transition: background 0.3s ease;
+}
+
+#foto-anterior-neriah {
+    left: 20px;
+}
+
+#foto-proxima-neriah {
+    right: 20px;
+}
+
+#foto-anterior-neriah:hover,
+#foto-proxima-neriah:hover {
+    background: var(--laranja);
+}
+
+#contador-fotos-neriah {
+    position: absolute;
+
+    bottom: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: white;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+/* =========================================
+   RESPONSIVIDADE - TABLET
+========================================= */
+
+@media (max-width: 1199px) {
+
+    .galeria {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .footer-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================
+   RESPONSIVIDADE - CELULAR
+========================================= */
+
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+
+        gap: 15px;
+        padding: 15px 4%;
+    }
+
+    .logo {
+        width: 165px;
+    }
+
+    nav {
+        gap: 12px 18px;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+    }
+
+    section {
+        padding: 45px 5%;
+    }
+
+    .titulo {
+        font-size: 1.7rem;
+
+        gap: 12px;
+        margin-bottom: 28px;
+    }
+
+    .titulo::before,
+    .titulo::after {
+        width: 30px;
+    }
+
+    #inicio {
+        min-height: 65vh;
+
+        padding: 65px 6%;
+    }
+
+    #inicio h1 {
+        font-size: 2.6rem;
+        letter-spacing: 1px;
+    }
+
+    #inicio p {
+        font-size: 1rem;
+    }
+
+    .galeria {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .card img {
+        height: 260px;
+    }
+
+    /* CATÁLOGO NO CELULAR */
+
+    .catalogo-cores {
+        padding: 45px 5%;
+    }
+
+    .catalogo-cores .titulo {
+        margin-bottom: 18px;
+    }
+
+    .catalogo-descricao {
+        margin-bottom: 28px;
+        font-size: 0.95rem;
+    }
+
+    .neriah-detalhes {
+        margin-top: 22px;
+    }
+
+    .neriah-detalhes h3 {
+        font-size: 1.5rem;
+    }
+
+    .neriah-miniatura {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* CONTATO */
+
+    .informacoes-container {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+
+        margin: 35px auto 45px;
+        padding: 0 15px;
+    }
+
+    .informacoes-container .info-card {
+        padding: 28px 22px;
+    }
+
+    .info-card .titulo {
+        font-size: 1.6rem;
+    }
+
+    .contato-botoes {
+        flex-direction: column;
+    }
+
+    .info-botao {
+        width: 100%;
+    }
+
+    /* RODAPÉ */
+
+    .footer-container {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    /* GALERIA AMPLIADA */
+
+    #foto-anterior-neriah,
+    #foto-proxima-neriah {
+        width: 38px;
+        height: 38px;
+
+        font-size: 20px;
+    }
+
+    #foto-anterior-neriah {
+        left: 8px;
+    }
+
+    #foto-proxima-neriah {
+        right: 8px;
+    }
+}
+
+/* =========================================
+   CATÁLOGO - SETAS SOBRE A AMOSTRA (CELULAR)
+========================================= */
+
+@media (max-width: 600px) {
+
+    .neriah-palco {
+        position: relative;
+
+        display: block;
+        max-width: 420px;
+    }
+
+    .neriah-seta {
+        position: absolute;
+        top: 50%;
+        z-index: 5;
+
+        width: 42px;
+        height: 42px;
+
+        background: rgba(255, 250, 244, 0.92);
+
+        transform: translateY(-50%);
+    }
+
+    .neriah-seta svg {
+        width: 19px;
+        height: 19px;
+    }
+
+    .neriah-seta:hover {
+        transform: translateY(-50%) scale(1.07);
+    }
+
+    .neriah-seta:active {
+        transform: translateY(-50%) scale(0.95);
+    }
+
+    .neriah-seta-ant {
+        left: 8px;
+    }
+
+    .neriah-seta-prox {
+        right: 8px;
+    }
+}
+
+/* =========================================
+   CELULARES PEQUENOS
+========================================= */
+
+@media (max-width: 380px) {
+
+    #inicio h1 {
+        font-size: 2.2rem;
+    }
+
+    nav {
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 0.8rem;
+    }
+
+    .titulo {
+        font-size: 1.45rem;
+    }
+
+    .titulo::before,
+    .titulo::after {
+        width: 20px;
+    }
+
+    .neriah-seta {
+        width: 38px;
+        height: 38px;
+    }
+
+    .neriah-miniatura {
+        width: 46px;
+        height: 46px;
+    }
+}
+
+/* =========================================
+   ACESSIBILIDADE
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .revelar {
+        opacity: 1;
+        transform: none;
+    }
+
+    .td-cursor::after {
+        animation: none;
+    }
+}
+
+
+/* =========================================
+   CORREÇÃO DE LAYOUT - NERIAH MÓVEIS
+========================================= */
+
+/* CENTRALIZAÇÃO GERAL */
+
+main {
+    width: 100%;
+    overflow: hidden;
+}
+
+main > section {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+/* GALERIA */
+
+#galeria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    padding: 60px 5%;
+    text-align: center;
+}
+
+#galeria .galeria {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    width: 100%;
+    max-width: 1300px;
+
+    margin: 30px auto 0;
+    gap: 22px;
+
+    align-items: stretch;
+    justify-content: center;
+}
+
+#galeria .card {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+#galeria .card img {
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+}
+
+#galeria .galeria-rodape {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    margin: 35px auto 0;
+    text-align: center;
+}
+
+/* DIVISORES */
+
+.divisor {
+    display: block;
+
+    width: 65px;
+    height: 3px;
+
+    margin: 20px auto;
+
+    padding: 0;
+
+    background: #8b6b56;
+    border: none;
+}
+
+/* LOCALIZAÇÃO E CONTATO */
+
+.informacoes-container {
+    width: 100%;
+    max-width: 1150px;
+
+    margin: 40px auto 65px;
+    padding: 0 25px;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 30px;
+}
+
+.informacoes-container .info-card {
+    width: 100%;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+/* CELULAR */
+
+@media (max-width: 900px) {
+
+    #galeria .galeria {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+
+    #galeria .galeria {
+        grid-template-columns: 1fr;
+    }
+
+    #galeria {
+        padding: 45px 5%;
+    }
+
+    .informacoes-container {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+    }
+}
+
+
+/* =========================================
+   GALERIA - IMAGENS SEM CORTES
+========================================= */
+
+#galeria .galeria {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: start;
+    gap: 25px;
+}
+
+#galeria .card {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+    border-radius: 15px;
+
+    background: white;
+}
+
+#galeria .card img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    max-height: none;
+    aspect-ratio: auto;
+
+    object-fit: contain;
+
+    transition: transform 0.3s ease;
+}
+
+#galeria .card h3 {
+    padding: 18px 12px;
+    margin: 0;
+
+    text-align: center;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+    #galeria .galeria {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+    #galeria .galeria {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================
+   CABEÇALHO - LOGO À ESQUERDA NO PC
+========================================= */
+
+@media (min-width: 769px) {
+
+    header {
+        width: 100%;
+        padding: 18px 5%;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+
+        gap: 30px;
+    }
+
+    header > a {
+        display: block;
+        flex-shrink: 0;
+        margin: 0;
+    }
+
+    header .logo {
+        display: block;
+        width: 180px;
+        height: auto;
+        margin: 0;
+    }
+
+    header nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: wrap;
+
+        gap: 22px;
+        margin-left: auto;
+    }
+}
+
+/* =========================================
+   CABEÇALHO - CELULAR
+========================================= */
+
+@media (max-width: 768px) {
+
+    header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        gap: 15px;
+        padding: 15px 4%;
+    }
+
+    header > a {
+        margin: 0 auto;
+    }
+
+    header .logo {
+        width: 165px;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    header nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        gap: 12px 18px;
+        margin: 0 auto;
+    }
+}
+
+
+/* =========================================================
+   NERIAH MÓVEIS — TEMA RÚSTICO CONTEMPORÂNEO
+   Marrom café, terracota, papel antigo e linhas delicadas.
+   Personalização adicionada sem remover a estrutura original.
+========================================================= */
+
+:root {
+    --laranja: #b96532;
+    --laranja-escuro: #8e4525;
+    --marrom: #493629;
+    --branco: #f9f3e9;
+    --escuro: #34251c;
+    --rustico-borda: rgba(100, 65, 43, .34);
+    --rustico-vidro: rgba(251, 244, 232, .47);
+    --rustico-sombra: rgba(55, 35, 24, .10);
+    /* Mantém a paleta mesmo com o gradiente do script.js */
+    --cor-fundo-1: #e8d6bf !important;
+    --cor-fundo-2: #f4e9d9 !important;
+    --cor-fundo-3: #d8bba0 !important;
+}
+
+body {
+    color: var(--marrom);
+    background-color: #ead9c3;
+    background-image:
+        repeating-linear-gradient(0deg, transparent 0 76px, rgba(104,69,43,.018) 77px 78px),
+        radial-gradient(ellipse at 15% 12%, rgba(255,248,235,.72), transparent 52%),
+        linear-gradient(135deg, var(--cor-fundo-1), var(--cor-fundo-2) 48%, var(--cor-fundo-3));
+    background-attachment: fixed;
+}
+
+header {
+    background: rgba(246, 236, 221, .87);
+    border-bottom: 1px solid rgba(95, 61, 40, .32);
+    box-shadow: 0 5px 22px rgba(62, 39, 26, .07);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+nav a { color: #493629; letter-spacing: .035em; }
+nav a::after { height: 1px; }
+nav a:hover, nav a.menu-ativo { color: #a4532e; }
+
+h1, h2, h3, h4 {
+    color: #483226;
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+.titulo { color: #483226; letter-spacing: .025em; }
+.titulo::before, .titulo::after {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #a66a43, transparent);
+}
+.divisor {
+    height: 1px;
+    width: 115px;
+    background: linear-gradient(90deg, transparent, #986c4b, transparent);
+}
+
+.botao, .info-botao {
+    background: rgba(121, 68, 41, .91);
+    color: #fff8ed;
+    border: 1px solid rgba(252, 231, 204, .45);
+    border-radius: 3px;
+    box-shadow: 0 4px 14px rgba(66, 36, 22, .11);
+    letter-spacing: .035em;
+}
+.botao:hover, .info-botao:hover {
+    background: #8e4525;
+    box-shadow: 0 7px 20px rgba(66, 36, 22, .17);
+}
+
+/* Molduras transparentes com detalhes finos nos cantos */
+.galeria .card,
+.informacoes-container .info-card {
+    position: relative;
+    background: var(--rustico-vidro);
+    border: 1px solid var(--rustico-borda);
+    border-radius: 4px;
+    box-shadow: 0 7px 24px var(--rustico-sombra);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+}
+
+.galeria .card::after,
+.informacoes-container .info-card::after {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 1px solid rgba(128, 88, 56, .20);
+    border-radius: 1px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.galeria .card:hover,
+.informacoes-container .info-card:hover {
+    box-shadow: 0 12px 30px rgba(62, 37, 23, .15);
+    border-color: rgba(126, 74, 42, .52);
+}
+
+.galeria .card h3 {
+    background: rgba(247, 235, 216, .42);
+    border-top: 1px solid rgba(107, 70, 43, .22);
+    color: #4a3326;
+    letter-spacing: .02em;
+}
+
+.info-card .titulo { color: #50392a; }
+.info-conteudo, .info-conteudo p { color: #523b2d; }
+.info-icone { color: #a65b34; }
+
+/* Catálogo de tecidos: aparência de álbum antigo */
+.catalogo-cores {
+    background: rgba(246, 236, 221, .14);
+    border-top: 1px solid rgba(115, 77, 51, .12);
+    border-bottom: 1px solid rgba(115, 77, 51, .12);
+}
+.neriah-detalhes {
+    color: #4b3527;
+}
+.neriah-miniatura {
+    border-radius: 3px;
+    border-color: rgba(110, 75, 51, .30);
+}
+.neriah-miniatura.ativa {
+    border-color: #a65b34;
+}
+.neriah-seta {
+    border-radius: 3px;
+}
+
+/* Rodapé em marrom profundo, não preto puro */
+footer {
+    background: #35261e;
+    border-top: 1px solid #8e684a;
+}
+footer h3, footer h4 { color: #dfaa7e; }
+footer p { color: #e7d9c8; }
+.sociais a { color: #e6b38b; }
+.copyright { border-color: rgba(238, 211, 183, .20); }
+
+/* Molduras delicadas também no celular */
+@media (max-width: 768px) {
+    .galeria .card::after,
+    .informacoes-container .info-card::after { inset: 5px; }
+    .titulo::before, .titulo::after { width: 28px; }
+    .informacoes-container .info-card { padding: 30px 20px; }
+}
