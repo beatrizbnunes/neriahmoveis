@@ -1,565 +1,352 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
 
-<head>
-    <meta charset="UTF-8">
+document.addEventListener("DOMContentLoaded", () => {
+
+    // ==========================================
+    // 1. MENU RESPONSIVO
+    // ==========================================
+
+    const menuToggle = document.getElementById("menuToggle");
+    const menu = document.getElementById("menuPrincipal");
+
+    if (menuToggle && menu) {
+        menuToggle.addEventListener("click", () => {
+            const aberto = menu.classList.toggle("aberto");
+
+            menuToggle.setAttribute("aria-expanded", String(aberto));
+
+            menuToggle.innerHTML = aberto
+                ? '<i class="fa-solid fa-xmark"></i>'
+                : '<i class="fa-solid fa-bars"></i>';
+        });
+
+        menu.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                menu.classList.remove("aberto");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            });
+        });
+    }
+
+
+    // ==========================================
+    // 2. TÍTULO DIGITANDO NO BANNER
+    // ==========================================
+
+    const titulo = document.getElementById("tituloDigitando");
+
+    if (titulo) {
+        const texto = titulo.dataset.texto || "";
+        const movimentoReduzido = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        if (movimentoReduzido) {
+            titulo.textContent = texto;
+        } else {
+            let indice = 0;
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+            titulo.classList.add("digitando");
 
-    <title>Neriah Móveis | Design, Conforto e Qualidade</title>
+            function digitar() {
+                if (indice < texto.length) {
+                    titulo.textContent += texto.charAt(indice);
+                    indice++;
 
-    <meta
-        name="description"
-        content="Neriah Móveis. Design, conforto e qualidade para sua casa."
-    >
+                    setTimeout(digitar, 55);
+                } else {
+                    titulo.classList.remove("digitando");
+                }
+            }
 
-    <!-- Marca que o JavaScript está ativo (usado pelo efeito de digitação) -->
-    <script>document.documentElement.classList.add("js");</script>
+            setTimeout(digitar, 400);
+        }
+    }
 
-    <!-- FONTES -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    // ==========================================
+    // 3. MOSTRUÁRIO DE TECIDOS
+    // ==========================================
+
+    const tecidos = [
+        { nome: "Aurora-04", imagem: "img/Aurora-04.jpg" },
+        { nome: "Aurora-05", imagem: "img/Aurora-05.jpg" },
+        { nome: "Bell-01", imagem: "img/Bell-01.jpg" },
+        { nome: "Bell-05", imagem: "img/Bell-05.jpg" },
+        { nome: "Bell-06", imagem: "img/Bell-06.jpg" },
+        { nome: "Fact-10", imagem: "img/Fact-10.jpg" },
+        { nome: "K-22", imagem: "img/K-22.jpg" },
+        { nome: "K-44", imagem: "img/K-44.jpg" },
+        { nome: "Lino-01", imagem: "img/Lino-01.jpg" },
+        { nome: "Lino-03", imagem: "img/Lino-03.jpg" },
+        { nome: "Lino-013", imagem: "img/Lino-013.jpg" }
+    ];
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    const imagemTecido = document.getElementById("imagemTecido");
+    const nomeTecido = document.getElementById("nomeTecido");
+    const contadorTecido = document.getElementById("contadorTecido");
+    const miniaturasContainer = document.getElementById("miniaturasTecidos");
+    const botaoAnterior = document.getElementById("tecidoAnterior");
+    const botaoProximo = document.getElementById("tecidoProximo");
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Bebas+Neue&family=Karla:wght@400;500;600&display=swap"
-        rel="stylesheet"
-    >
+    let tecidoAtual = 0;
+    let trocaPendente = 0;
+    let temporizadorTroca = null;
 
-    <!-- ÍCONES -->
+    function atualizarMiniaturas() {
+        if (!miniaturasContainer) return;
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+        const botoes = miniaturasContainer.querySelectorAll(
+            ".miniatura-tecido"
+        );
 
-    <!-- CSS PRINCIPAL -->
+        botoes.forEach((botao, indice) => {
+            const ativo = indice === tecidoAtual;
 
-    <link rel="stylesheet" href="cssneriah.css?v=3">
+            botao.classList.toggle("ativo", ativo);
+            botao.setAttribute("aria-pressed", String(ativo));
+        });
+    }
 
-    <!-- JAVASCRIPT -->
+    function atualizarInformacoes() {
+        if (nomeTecido) {
+            nomeTecido.textContent = tecidos[tecidoAtual].nome;
+        }
 
-    <script src="script.js?v=3" defer></script>
-</head>
+        if (contadorTecido) {
+            const atual = String(tecidoAtual + 1).padStart(2, "0");
+            const total = String(tecidos.length).padStart(2, "0");
 
-<body>
+            contadorTecido.textContent = `${atual} / ${total}`;
+        }
 
-    <!-- =====================================
-         CABEÇALHO
-    ===================================== -->
+        atualizarMiniaturas();
+    }
 
-    <header>
+    function mostrarTecido(indice) {
+        if (!imagemTecido || tecidos.length === 0) return;
 
-        <a
-            href="#inicio"
-            aria-label="Neriah Móveis - Início"
-        >
+        const novoIndice = (
+            (indice % tecidos.length) + tecidos.length
+        ) % tecidos.length;
 
-            <img
-                src="neriahlogo.jpeg"
-                alt="Logo Neriah Móveis"
-                class="logo"
-            >
+        const tecido = tecidos[novoIndice];
+        const requisicao = ++trocaPendente;
 
-        </a>
+        clearTimeout(temporizadorTroca);
 
-        <nav aria-label="Navegação principal">
+        // Pré-carrega a próxima imagem antes de exibi-la.
+        const imagemPrecarregada = new Image();
 
-            <a href="#inicio">Início</a>
+        imagemPrecarregada.onload = () => {
+            if (requisicao !== trocaPendente) return;
 
-            <a href="#sobre">Sobre Nós</a>
+            imagemTecido.classList.add("trocando");
 
-            <a href="#galeria">Galeria</a>
+            temporizadorTroca = setTimeout(() => {
+                if (requisicao !== trocaPendente) return;
 
-            <a href="#catalogo-cores">Cores</a>
+                imagemTecido.src = tecido.imagem;
+                imagemTecido.alt = `Amostra do tecido ${tecido.nome}`;
 
-            <a href="#localizacao">Localização</a>
+                tecidoAtual = novoIndice;
+                atualizarInformacoes();
 
-            <a href="#contato">Contato</a>
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        imagemTecido.classList.remove("trocando");
+                    });
+                });
+            }, 250);
+        };
 
-        </nav>
+        imagemPrecarregada.onerror = () => {
+            if (requisicao !== trocaPendente) return;
 
-    </header>
+            console.warn(
+                "Não foi possível carregar o tecido:",
+                tecido.imagem
+            );
+        };
 
-    <main>
+        imagemPrecarregada.src = tecido.imagem;
+    }
 
-        <!-- =====================================
-             INÍCIO
-        ===================================== -->
+    function criarMiniaturas() {
+        if (!miniaturasContainer) return;
 
-        <section id="inicio">
+        miniaturasContainer.innerHTML = "";
 
-            <div class="hero-conteudo">
+        tecidos.forEach((tecido, indice) => {
+            const botao = document.createElement("button");
 
-                <h1
-                    id="tituloHero"
-                    aria-label="Design, conforto e qualidade para sua casa"
-                >
-                    <span class="td-texto" aria-hidden="true">DESIGN, CONFORTO E QUALIDADE PARA SUA CASA</span>
-                </h1>
+            botao.type = "button";
+            botao.className = "miniatura-tecido";
+            botao.setAttribute(
+                "aria-label",
+                `Selecionar tecido ${tecido.nome}`
+            );
 
-                <p>
-                    Feliz em fazer parte da sua vida para
-                    transformar sua casa em um lar
-                    aconchegante e elegante.
-                </p>
+            const imagem = document.createElement("img");
 
-                <a
-                    class="botao"
-                    href="https://wa.me/5547996527515"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
+            imagem.src = tecido.imagem;
+            imagem.alt = "";
+            imagem.loading = "lazy";
 
-                    <i class="fa-brands fa-whatsapp"></i>
+            botao.appendChild(imagem);
 
-                    Solicitar Orçamento
+            botao.addEventListener("click", () => {
+                mostrarTecido(indice);
+            });
 
-                </a>
+            miniaturasContainer.appendChild(botao);
+        });
 
-            </div>
+        atualizarMiniaturas();
+    }
 
-        </section>
+    if (imagemTecido) {
+        criarMiniaturas();
+        atualizarInformacoes();
 
-        <!-- =====================================
-             SOBRE NÓS
-        ===================================== -->
+        if (botaoAnterior) {
+            botaoAnterior.addEventListener("click", () => {
+                mostrarTecido(tecidoAtual - 1);
+            });
+        }
 
-        <section id="sobre">
+        if (botaoProximo) {
+            botaoProximo.addEventListener("click", () => {
+                mostrarTecido(tecidoAtual + 1);
+            });
+        }
 
-            <h2 class="titulo">
-                <span>Sobre Nós</span>
-            </h2>
+        // Permite trocar os tecidos usando as setas do teclado,
+        // quando o foco está dentro do mostruário.
+        const mostruario = imagemTecido.closest(".mostruario");
 
-            <p>
-                A Neriah Móveis atua oferecendo móveis
-                de qualidade, conforto e sofisticação
-                para transformar ambientes e atender
-                às necessidades de cada cliente.
-            </p>
+        if (mostruario) {
+            mostruario.addEventListener("keydown", evento => {
+                if (evento.key === "ArrowRight") {
+                    evento.preventDefault();
+                    mostrarTecido(tecidoAtual + 1);
+                }
 
-            <p>
-                Nosso compromisso é proporcionar atendimento
-                personalizado, produtos de excelência
-                e uma experiência de compra confiável.
-            </p>
-
-        </section>
-
-        <div class="divisor"></div>
-
-        <!-- =====================================
-             GALERIA DE PRODUTOS
-        ===================================== -->
-
-        <section id="galeria">
-
-            <h2 class="titulo">
-                <span>Conheça nossos produtos!</span>
-            </h2>
-
-            <div class="galeria">
-
-                <!-- CADEIRA VERTICE -->
-
-                <article class="card">
-
-                    <img
-                        src="cadeira01.jpeg"
-                        alt="Cadeira Vertice"
-                        loading="lazy"
-                    >
-
-                    <h3>Cadeira Vertice</h3>
-
-                </article>
-
-                <!-- CADEIRA FLORENCE -->
-
-                <article class="card">
-
-                    <img
-                        src="mesacadeira.jpeg"
-                        alt="Cadeira Florence"
-                        loading="lazy"
-                    >
-
-                    <h3>Cadeira Florence</h3>
-
-                </article>
-
-                <!-- POLTRONA Dinamarca -->
-
-                <article class="card">
-
-                    <img
-                        src="poltronadinaplus.png"
-                        alt="Poltrona Dinamarca"
-                        loading="lazy"
-                    >
-
-                    <h3>Poltrona San Remo</h3>
-
-                </article>
-
-                <!-- BANQUETA DINAMARCA -->
-
-                <article class="card">
-
-                    <img
-                        src="duascadeiras.jpeg"
-                        alt="Banqueta Dinamarca"
-                        loading="lazy"
-                    >
-
-                    <h3>Banqueta Dinamarca</h3>
-
-                </article>
-
-            </div>
-
-            <div class="galeria-rodape">
-
-                <a href="galeria.html" class="botao">
-
-                    <i class="fa-solid fa-images"></i>
-
-                    Ver Mais Fotos
-
-                </a>
-
-            </div>
-
-        </section>
-
-        <div class="divisor"></div>
-
-        <!-- =====================================
-             CATÁLOGO INTERATIVO DE CORES
-             (as folhas 3D são criadas pelo script.js)
-        ===================================== -->
-
-        <section
-            id="catalogo-cores"
-            class="catalogo-cores"
-            aria-labelledby="titulo-catalogo"
-        >
-
-            <h2 class="titulo" id="titulo-catalogo">
-                <span>Catálogo de Cores</span>
-            </h2>
-
-            <p class="catalogo-descricao">
-                Conheça nossos tecidos e escolha o acabamento
-                ideal para o seu móvel.
-            </p>
-
-            <div class="neriah-palco">
-
-                <button
-                    class="neriah-seta neriah-seta-ant"
-                    id="corAnterior"
-                    type="button"
-                    aria-label="Tecido anterior"
-                >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M15 5l-7 7 7 7"></path>
-                    </svg>
-                </button>
-
-                <div
-                    class="neriah-livro"
-                    id="catalogoLivro"
-                    role="group"
-                    aria-label="Mostruário de tecidos"
-                    tabindex="0"
-                >
-
-                    <div class="neriah-base">
-                        <img
-                            id="neriahFotoBase"
-                            src="K-44.jpg"
-                            alt="Tecido Terracota, código K-44"
-                            draggable="false"
-                        >
-                    </div>
-
-                    <div
-                        class="neriah-sombra-base"
-                        id="neriahSombraBase"
-                        aria-hidden="true"
-                    ></div>
-
-                </div>
-
-                <button
-                    class="neriah-seta neriah-seta-prox"
-                    id="corProxima"
-                    type="button"
-                    aria-label="Próximo tecido"
-                >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </button>
-
-            </div>
-
-            <div class="neriah-detalhes" aria-live="polite">
-
-                <h3 id="nomeCor">Terracota</h3>
-
-                <p class="neriah-codigo">
-                    Código <span id="codigoCor">K-44</span>
-                </p>
-
-                <p class="neriah-contador" id="contadorCor">
-                    01 de 11
-                </p>
-
-            </div>
-
-            <div
-                class="neriah-miniaturas"
-                id="catalogoMiniaturas"
-                role="group"
-                aria-label="Escolher tecido"
-            ></div>
-
-            <p class="catalogo-aviso">
-                As cores são ilustrativas e podem
-                apresentar pequenas variações
-                conforme a configuração da tela.
-                Consulte a disponibilidade com
-                nossa equipe.
-            </p>
-
-        </section>
-
-        <div class="divisor"></div>
-
-        <!-- =====================================
-             LOCALIZAÇÃO E CONTATO
-        ===================================== -->
-
-        <div class="informacoes-container">
-
-            <!-- LOCALIZAÇÃO -->
-
-            <section
-                id="localizacao"
-                class="info-card"
-            >
-
-                <h2 class="titulo">
-                    <span>Localização</span>
-                </h2>
-
-                <div class="info-conteudo">
-
-                    <i class="fa-solid fa-location-dot info-icone"></i>
-
-                    <p>
-                        Estrada Alberto Tôrres<br>
-                        São Bento do Sul - SC<br>
-                        CEP: 89283-185
-                    </p>
-
-                </div>
-
-                <a
-                    href="https://maps.app.goo.gl/yWdNgVLWJec74iBj6"
-                    class="info-botao"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-
-                    <i class="fa-solid fa-map-location-dot"></i>
-
-                    Como Chegar
-
-                </a>
-
-            </section>
-
-            <!-- CONTATO -->
-
-            <section
-                id="contato"
-                class="info-card"
-            >
-
-                <h2 class="titulo">
-                    <span>Contato</span>
-                </h2>
-
-                <div class="info-conteudo">
-
-                    <i class="fa-brands fa-whatsapp info-icone"></i>
-
-                    <p>
-                        WhatsApp<br>
-                        (47) 98850-4149
-                    </p>
-
-                </div>
-
-                <div class="info-conteudo">
-
-                    <i class="fa-brands fa-instagram info-icone"></i>
-
-                    <p>
-                        Instagram<br>
-                        @moveisneriahoficial
-                    </p>
-
-                </div>
-
-                <div class="contato-botoes">
-
-                    <a
-                        href="https://wa.me/5547988504149"
-                        class="info-botao"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        <i class="fa-brands fa-whatsapp"></i>
-
-                        WhatsApp
-
-                    </a>
-
-                    <a
-                        href="https://www.instagram.com/moveisneriahoficial/"
-                        class="info-botao"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        <i class="fa-brands fa-instagram"></i>
-
-                        Instagram
-
-                    </a>
-
-                </div>
-
-            </section>
-
-        </div>
-
-    </main>
-
-    <!-- =====================================
-         RODAPÉ
-    ===================================== -->
-
-    <footer>
-
-        <div class="footer-container">
-
-            <!-- EMPRESA -->
-
-            <div class="footer-empresa">
-
-                <h3>Neriah Móveis</h3>
-
-                <p>
-                    Móveis com qualidade, conforto e design
-                    para transformar ambientes.
-                </p>
-
-            </div>
-
-            <!-- INFORMAÇÕES -->
-
-            <div class="footer-informacoes">
-
-                <h4>Informações</h4>
-
-                <p>
-                    Entrega mediante consulta de região.
-                </p>
-
-                <p>
-                    Montagem disponível.
-                </p>
-
-                <p>
-                    Produtos sujeitos à disponibilidade em estoque.
-                </p>
-
-            </div>
-
-            <!-- LOCALIZAÇÃO -->
-
-            <div class="footer-localizacao">
-
-                <h4>Localização</h4>
-
-                <p>Estrada Alberto Tôrres</p>
-
-                <p>São Bento do Sul - SC</p>
-
-                <p>CEP: 89283-185</p>
-
-            </div>
-
-            <!-- REDES SOCIAIS -->
-
-            <div class="footer-redes">
-
-                <h4>Redes Sociais</h4>
-
-                <div class="sociais">
-
-                    <a
-                        href="https://www.instagram.com/moveisneriahoficial/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Instagram Neriah Móveis"
-                    >
-
-                        <i class="fa-brands fa-instagram"></i>
-
-                    </a>
-
-                    <a
-                        href="https://wa.me/5547988504149"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="WhatsApp Neriah Móveis"
-                    >
-
-                        <i class="fa-brands fa-whatsapp"></i>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- DIREITOS AUTORAIS -->
-
-        <div class="copyright">
-
-            © 2026 Neriah Móveis — Todos os direitos reservados.
-
-        </div>
-
-    </footer>
-
-</body>
-
-</html>
+                if (evento.key === "ArrowLeft") {
+                    evento.preventDefault();
+                    mostrarTecido(tecidoAtual - 1);
+                }
+            });
+        }
+    }
+
+
+    // ==========================================
+    // 4. AMPLIAR FOTOS DA GALERIA
+    // ==========================================
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImagem = document.getElementById("lightboxImagem");
+    const lightboxNome = document.getElementById("lightboxNome");
+    const fecharLightbox = document.getElementById("fecharLightbox");
+
+    let ultimoElementoFocado = null;
+
+    function abrirFoto(caminho, nome) {
+        if (!lightbox || !lightboxImagem) return;
+
+        ultimoElementoFocado = document.activeElement;
+
+        lightboxImagem.src = caminho;
+        lightboxImagem.alt = nome;
+
+        if (lightboxNome) {
+            lightboxNome.textContent = nome;
+        }
+
+        lightbox.hidden = false;
+        document.body.classList.add("lightbox-aberto");
+
+        if (fecharLightbox) {
+            fecharLightbox.focus();
+        }
+    }
+
+    function fecharFoto() {
+        if (!lightbox) return;
+
+        lightbox.hidden = true;
+        document.body.classList.remove("lightbox-aberto");
+
+        if (lightboxImagem) {
+            lightboxImagem.removeAttribute("src");
+        }
+
+        if (ultimoElementoFocado) {
+            ultimoElementoFocado.focus();
+        }
+    }
+
+    document.querySelectorAll("[data-ampliar]").forEach(botao => {
+        botao.addEventListener("click", () => {
+            abrirFoto(
+                botao.dataset.ampliar,
+                botao.dataset.nome || "Produto Neriah Móveis"
+            );
+        });
+    });
+
+    if (fecharLightbox) {
+        fecharLightbox.addEventListener("click", fecharFoto);
+    }
+
+    if (lightbox) {
+        lightbox.addEventListener("click", evento => {
+            if (evento.target === lightbox) {
+                fecharFoto();
+            }
+        });
+    }
+
+    document.addEventListener("keydown", evento => {
+        if (evento.key === "Escape" && lightbox && !lightbox.hidden) {
+            fecharFoto();
+        }
+    });
+
+
+    // ==========================================
+    // 5. ANIMAÇÃO SUAVE AO ROLAR A PÁGINA
+    // ==========================================
+
+    const elementos = document.querySelectorAll(
+        ".cabecalho-secao, .produto-card, .sobre-conteudo, .caixa-informacoes"
+    );
+
+    const movimentoReduzido = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if ("IntersectionObserver" in window && !movimentoReduzido) {
+        const observador = new IntersectionObserver(
+            entradas => {
+                entradas.forEach(entrada => {
+                    if (entrada.isIntersecting) {
+                        entrada.target.classList.add("visivel");
+                        observador.unobserve(entrada.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.08,
+                rootMargin: "0px 0px 35px 0px"
+            }
+        );
+
+        elementos.forEach(elemento => {
+            elemento.classList.add("revelar");
+            observador.observe(elemento);
+        });
+    }
+
+});

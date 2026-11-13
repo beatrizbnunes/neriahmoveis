@@ -1,565 +1,349 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Neriah Móveis — design, conforto e qualidade para transformar sua casa.">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Neriah Móveis | Design, Conforto e Qualidade</title>
-
-    <meta
-        name="description"
-        content="Neriah Móveis. Design, conforto e qualidade para sua casa."
-    >
-
-    <!-- Marca que o JavaScript está ativo (usado pelo efeito de digitação) -->
-    <script>document.documentElement.classList.add("js");</script>
-
-    <!-- FONTES -->
+    <title>Neriah Móveis | Design e Conforto</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Bebas+Neue&family=Karla:wght@400;500;600&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- ÍCONES -->
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-
-    <!-- CSS PRINCIPAL -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-
-    <!-- JAVASCRIPT -->
-
-    <script src="script.js?v=3" defer></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
 
-    <!-- =====================================
-         CABEÇALHO
-    ===================================== -->
-
-    <header>
-
-        <a
-            href="#inicio"
-            aria-label="Neriah Móveis - Início"
-        >
-
-            <img
-                src="neriahlogo.jpeg"
-                alt="Logo Neriah Móveis"
-                class="logo"
-            >
-
+    <!-- CABEÇALHO -->
+    <header class="cabecalho">
+        <a href="#inicio" class="logo">
+            <img src="img/neriahlogo.jpeg" alt="Neriah Móveis">
         </a>
 
-        <nav aria-label="Navegação principal">
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
+        <nav id="menuPrincipal" aria-label="Menu principal">
             <a href="#inicio">Início</a>
-
             <a href="#sobre">Sobre Nós</a>
-
             <a href="#galeria">Galeria</a>
-
-            <a href="#catalogo-cores">Cores</a>
-
+            <a href="#tecidos">Tecidos</a>
             <a href="#localizacao">Localização</a>
-
             <a href="#contato">Contato</a>
-
         </nav>
-
     </header>
 
     <main>
 
-        <!-- =====================================
-             INÍCIO
-        ===================================== -->
-
-        <section id="inicio">
-
+        <!-- BANNER -->
+        <section id="inicio" class="hero">
             <div class="hero-conteudo">
+                <span class="hero-etiqueta">NERIAH MÓVEIS</span>
 
-                <h1
-                    id="tituloHero"
-                    aria-label="Design, conforto e qualidade para sua casa"
-                >
-                    <span class="td-texto" aria-hidden="true">DESIGN, CONFORTO E QUALIDADE PARA SUA CASA</span>
-                </h1>
+                <h1 id="tituloDigitando" data-texto="Design, conforto e qualidade para sua casa"></h1>
 
                 <p>
-                    Feliz em fazer parte da sua vida para
-                    transformar sua casa em um lar
-                    aconchegante e elegante.
+                    Transformamos ambientes em espaços
+                    aconchegantes, elegantes e cheios de personalidade.
                 </p>
 
                 <a
-                    class="botao"
-                    href="https://wa.me/5547996527515"
+                    href="https://wa.me/5547988504149"
                     target="_blank"
                     rel="noopener noreferrer"
+                    class="botao botao-principal"
                 >
-
                     <i class="fa-brands fa-whatsapp"></i>
-
                     Solicitar Orçamento
-
                 </a>
-
             </div>
-
         </section>
 
-        <!-- =====================================
-             SOBRE NÓS
-        ===================================== -->
+        <!-- SOBRE NÓS -->
+        <section id="sobre" class="secao sobre">
+            <div class="container">
+                <div class="cabecalho-secao">
+                    <span class="subtitulo">CONHEÇA NOSSA HISTÓRIA</span>
+                    <h2>Sobre Nós</h2>
+                    <div class="linha-decorativa"></div>
+                </div>
 
-        <section id="sobre">
+                <div class="sobre-conteudo">
+                    <p>
+                        A Neriah Móveis atua oferecendo móveis que unem
+                        qualidade, conforto e sofisticação, criando ambientes
+                        que refletem o estilo e a personalidade de cada cliente.
+                    </p>
 
-            <h2 class="titulo">
-                <span>Sobre Nós</span>
-            </h2>
-
-            <p>
-                A Neriah Móveis atua oferecendo móveis
-                de qualidade, conforto e sofisticação
-                para transformar ambientes e atender
-                às necessidades de cada cliente.
-            </p>
-
-            <p>
-                Nosso compromisso é proporcionar atendimento
-                personalizado, produtos de excelência
-                e uma experiência de compra confiável.
-            </p>
-
+                    <p>
+                        Nosso compromisso é proporcionar atendimento
+                        personalizado, produtos de excelência e uma
+                        experiência de compra confiável.
+                    </p>
+                </div>
+            </div>
         </section>
 
-        <div class="divisor"></div>
+        <!-- GALERIA -->
+        <section id="galeria" class="secao secao-alternativa">
+            <div class="container">
+                <div class="cabecalho-secao">
+                    <span class="subtitulo">NOSSA COLEÇÃO</span>
+                    <h2>Conheça nossos produtos</h2>
+                    <div class="linha-decorativa"></div>
+                    <p>
+                        Móveis pensados para oferecer beleza,
+                        conforto e personalidade ao seu ambiente.
+                    </p>
+                </div>
 
-        <!-- =====================================
-             GALERIA DE PRODUTOS
-        ===================================== -->
+                <div class="grade-produtos">
 
-        <section id="galeria">
+                    <article class="produto-card">
+                        <button class="produto-imagem" type="button" data-ampliar="img/cadeira_chamix.jpg" data-nome="Cadeira Chamix">
+                            <img src="img/cadeira_chamix.jpg" alt="Cadeira Chamix" loading="lazy">
+                        </button>
+                        <h3>Cadeira Chamix</h3>
+                    </article>
 
-            <h2 class="titulo">
-                <span>Conheça nossos produtos!</span>
-            </h2>
+                    <article class="produto-card">
+                        <button class="produto-imagem" type="button" data-ampliar="img/cadeira_azul.jpg" data-nome="Cadeira Azul">
+                            <img src="img/cadeira_azul.jpg" alt="Cadeira Azul" loading="lazy">
+                        </button>
+                        <h3>Cadeira Azul</h3>
+                    </article>
 
-            <div class="galeria">
+                    <article class="produto-card">
+                        <button class="produto-imagem" type="button" data-ampliar="img/cadeira_branca.jpg" data-nome="Cadeira Branca">
+                            <img src="img/cadeira_branca.jpg" alt="Cadeira Branca" loading="lazy">
+                        </button>
+                        <h3>Cadeira Branca</h3>
+                    </article>
 
-                <!-- CADEIRA VERTICE -->
+                    <article class="produto-card">
+                        <button class="produto-imagem" type="button" data-ampliar="img/cadeira_bellagio.jpg" data-nome="Cadeira Bellagio">
+                            <img src="img/cadeira_bellagio.jpg" alt="Cadeira Bellagio" loading="lazy">
+                        </button>
+                        <h3>Cadeira Bellagio</h3>
+                    </article>
 
-                <article class="card">
+                </div>
 
-                    <img
-                        src="cadeira01.jpeg"
-                        alt="Cadeira Vertice"
-                        loading="lazy"
-                    >
-
-                    <h3>Cadeira Vertice</h3>
-
-                </article>
-
-                <!-- CADEIRA FLORENCE -->
-
-                <article class="card">
-
-                    <img
-                        src="mesacadeira.jpeg"
-                        alt="Cadeira Florence"
-                        loading="lazy"
-                    >
-
-                    <h3>Cadeira Florence</h3>
-
-                </article>
-
-                <!-- POLTRONA Dinamarca -->
-
-                <article class="card">
-
-                    <img
-                        src="poltronadinaplus.png"
-                        alt="Poltrona Dinamarca"
-                        loading="lazy"
-                    >
-
-                    <h3>Poltrona San Remo</h3>
-
-                </article>
-
-                <!-- BANQUETA DINAMARCA -->
-
-                <article class="card">
-
-                    <img
-                        src="duascadeiras.jpeg"
-                        alt="Banqueta Dinamarca"
-                        loading="lazy"
-                    >
-
-                    <h3>Banqueta Dinamarca</h3>
-
-                </article>
-
+                <div class="centralizar">
+                    <a href="galeria.html" class="botao botao-secundario">
+                        <i class="fa-regular fa-images"></i>
+                        Ver Mais Fotos
+                    </a>
+                </div>
             </div>
-
-            <div class="galeria-rodape">
-
-                <a href="galeria.html" class="botao">
-
-                    <i class="fa-solid fa-images"></i>
-
-                    Ver Mais Fotos
-
-                </a>
-
-            </div>
-
         </section>
 
-        <div class="divisor"></div>
+        <!-- MOSTRUÁRIO DE TECIDOS -->
+        <section id="tecidos" class="secao">
+            <div class="container">
+                <div class="cabecalho-secao">
+                    <span class="subtitulo">PERSONALIZE SEU AMBIENTE</span>
+                    <h2>Nosso Mostruário de Tecidos</h2>
+                    <div class="linha-decorativa"></div>
+                    <p>
+                        Explore nossas opções de tecidos e descubra
+                        a combinação ideal para o seu móvel.
+                    </p>
+                </div>
 
-        <!-- =====================================
-             CATÁLOGO INTERATIVO DE CORES
-             (as folhas 3D são criadas pelo script.js)
-        ===================================== -->
+                <div class="mostruario">
 
-        <section
-            id="catalogo-cores"
-            class="catalogo-cores"
-            aria-labelledby="titulo-catalogo"
-        >
+                    <div class="mostruario-visual">
 
-            <h2 class="titulo" id="titulo-catalogo">
-                <span>Catálogo de Cores</span>
-            </h2>
-
-            <p class="catalogo-descricao">
-                Conheça nossos tecidos e escolha o acabamento
-                ideal para o seu móvel.
-            </p>
-
-            <div class="neriah-palco">
-
-                <button
-                    class="neriah-seta neriah-seta-ant"
-                    id="corAnterior"
-                    type="button"
-                    aria-label="Tecido anterior"
-                >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M15 5l-7 7 7 7"></path>
-                    </svg>
-                </button>
-
-                <div
-                    class="neriah-livro"
-                    id="catalogoLivro"
-                    role="group"
-                    aria-label="Mostruário de tecidos"
-                    tabindex="0"
-                >
-
-                    <div class="neriah-base">
-                        <img
-                            id="neriahFotoBase"
-                            src="K-44.jpg"
-                            alt="Tecido Terracota, código K-44"
-                            draggable="false"
+                        <button
+                            class="seta-tecido"
+                            id="tecidoAnterior"
+                            type="button"
+                            aria-label="Tecido anterior"
                         >
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+
+                        <div class="tecido-imagem-container">
+                            <img
+                                id="imagemTecido"
+                                src="img/Aurora-04.jpg"
+                                alt="Amostra do tecido Aurora-04"
+                            >
+                        </div>
+
+                        <button
+                            class="seta-tecido"
+                            id="tecidoProximo"
+                            type="button"
+                            aria-label="Próximo tecido"
+                        >
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+
+                    </div>
+
+                    <div class="tecido-informacoes" aria-live="polite">
+                        <span class="tecido-legenda">TECIDO SELECIONADO</span>
+                        <h3 id="nomeTecido">Aurora-04</h3>
+                        <span id="contadorTecido">01 / 11</span>
                     </div>
 
                     <div
-                        class="neriah-sombra-base"
-                        id="neriahSombraBase"
-                        aria-hidden="true"
+                        class="tecido-miniaturas"
+                        id="miniaturasTecidos"
+                        aria-label="Escolher tecido"
                     ></div>
 
+                    <p class="aviso-tecidos">
+                        As cores podem apresentar pequenas variações
+                        conforme a iluminação e a tela do dispositivo.
+                    </p>
+
                 </div>
-
-                <button
-                    class="neriah-seta neriah-seta-prox"
-                    id="corProxima"
-                    type="button"
-                    aria-label="Próximo tecido"
-                >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </button>
-
             </div>
-
-            <div class="neriah-detalhes" aria-live="polite">
-
-                <h3 id="nomeCor">Terracota</h3>
-
-                <p class="neriah-codigo">
-                    Código <span id="codigoCor">K-44</span>
-                </p>
-
-                <p class="neriah-contador" id="contadorCor">
-                    01 de 11
-                </p>
-
-            </div>
-
-            <div
-                class="neriah-miniaturas"
-                id="catalogoMiniaturas"
-                role="group"
-                aria-label="Escolher tecido"
-            ></div>
-
-            <p class="catalogo-aviso">
-                As cores são ilustrativas e podem
-                apresentar pequenas variações
-                conforme a configuração da tela.
-                Consulte a disponibilidade com
-                nossa equipe.
-            </p>
-
         </section>
 
-        <div class="divisor"></div>
-
-        <!-- =====================================
-             LOCALIZAÇÃO E CONTATO
-        ===================================== -->
-
-        <div class="informacoes-container">
-
-            <!-- LOCALIZAÇÃO -->
-
-            <section
-                id="localizacao"
-                class="info-card"
-            >
-
-                <h2 class="titulo">
-                    <span>Localização</span>
-                </h2>
-
-                <div class="info-conteudo">
-
-                    <i class="fa-solid fa-location-dot info-icone"></i>
-
-                    <p>
-                        Estrada Alberto Tôrres<br>
-                        São Bento do Sul - SC<br>
-                        CEP: 89283-185
-                    </p>
-
+        <!-- LOCALIZAÇÃO E CONTATO -->
+        <section class="secao secao-alternativa" id="informacoes">
+            <div class="container">
+                <div class="cabecalho-secao">
+                    <span class="subtitulo">ESTAMOS À SUA DISPOSIÇÃO</span>
+                    <h2>Venha nos conhecer</h2>
+                    <div class="linha-decorativa"></div>
                 </div>
 
-                <a
-                    href="https://maps.app.goo.gl/yWdNgVLWJec74iBj6"
-                    class="info-botao"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
+                <div class="caixa-informacoes">
 
-                    <i class="fa-solid fa-map-location-dot"></i>
+                    <div class="informacao-coluna" id="localizacao">
+                        <div class="icone-informacao">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
 
-                    Como Chegar
+                        <h3>Nossa Localização</h3>
 
-                </a>
+                        <p>Estrada Alberto Tôrres</p>
+                        <p>São Bento do Sul - SC</p>
+                        <p>CEP: 89283-185</p>
 
-            </section>
+                        <div class="mapa-container">
+                            <iframe
+                                title="Localização Neriah Móveis"
+                                src="https://www.google.com/maps?q=Estrada%20Alberto%20Torres%2C%20Sao%20Bento%20do%20Sul%2C%20SC&output=embed"
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        </div>
+                    </div>
 
-            <!-- CONTATO -->
+                    <div class="informacao-coluna" id="contato">
+                        <div class="icone-informacao">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
 
-            <section
-                id="contato"
-                class="info-card"
-            >
+                        <h3>Entre em Contato</h3>
 
-                <h2 class="titulo">
-                    <span>Contato</span>
-                </h2>
+                        <p>
+                            Ficou com alguma dúvida ou deseja
+                            solicitar um orçamento?
+                        </p>
 
-                <div class="info-conteudo">
+                        <p>
+                            Nossa equipe está pronta para ajudar você
+                            a encontrar o móvel ideal.
+                        </p>
 
-                    <i class="fa-brands fa-whatsapp info-icone"></i>
+                        <div class="contato-botoes">
+                            <a
+                                href="https://wa.me/5547988504149"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="botao botao-principal"
+                            >
+                                <i class="fa-brands fa-whatsapp"></i>
+                                WhatsApp
+                            </a>
 
-                    <p>
-                        WhatsApp<br>
-                        (47) 98850-4149
-                    </p>
-
-                </div>
-
-                <div class="info-conteudo">
-
-                    <i class="fa-brands fa-instagram info-icone"></i>
-
-                    <p>
-                        Instagram<br>
-                        @moveisneriahoficial
-                    </p>
-
-                </div>
-
-                <div class="contato-botoes">
-
-                    <a
-                        href="https://wa.me/5547988504149"
-                        class="info-botao"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        <i class="fa-brands fa-whatsapp"></i>
-
-                        WhatsApp
-
-                    </a>
-
-                    <a
-                        href="https://www.instagram.com/moveisneriahoficial/"
-                        class="info-botao"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        <i class="fa-brands fa-instagram"></i>
-
-                        Instagram
-
-                    </a>
+                            <a
+                                href="https://www.instagram.com/moveisneriahoficial/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="botao botao-secundario"
+                            >
+                                <i class="fa-brands fa-instagram"></i>
+                                Instagram
+                            </a>
+                        </div>
+                    </div>
 
                 </div>
-
-            </section>
-
-        </div>
+            </div>
+        </section>
 
     </main>
 
-    <!-- =====================================
-         RODAPÉ
-    ===================================== -->
+    <!-- RODAPÉ -->
+    <footer class="rodape">
+        <div class="container rodape-conteudo">
 
-    <footer>
-
-        <div class="footer-container">
-
-            <!-- EMPRESA -->
-
-            <div class="footer-empresa">
-
+            <div>
                 <h3>Neriah Móveis</h3>
-
                 <p>
-                    Móveis com qualidade, conforto e design
-                    para transformar ambientes.
+                    Design, conforto e qualidade
+                    para transformar seu lar.
                 </p>
-
             </div>
 
-            <!-- INFORMAÇÕES -->
-
-            <div class="footer-informacoes">
-
+            <div>
                 <h4>Informações</h4>
-
-                <p>
-                    Entrega mediante consulta de região.
-                </p>
-
-                <p>
-                    Montagem disponível.
-                </p>
-
-                <p>
-                    Produtos sujeitos à disponibilidade em estoque.
-                </p>
-
+                <p>Entrega mediante consulta de região.</p>
+                <p>Montagem disponível.</p>
+                <p>Produtos sujeitos à disponibilidade.</p>
             </div>
 
-            <!-- LOCALIZAÇÃO -->
-
-            <div class="footer-localizacao">
-
+            <div>
                 <h4>Localização</h4>
-
                 <p>Estrada Alberto Tôrres</p>
-
                 <p>São Bento do Sul - SC</p>
-
                 <p>CEP: 89283-185</p>
-
             </div>
 
-            <!-- REDES SOCIAIS -->
-
-            <div class="footer-redes">
-
+            <div>
                 <h4>Redes Sociais</h4>
 
-                <div class="sociais">
-
-                    <a
-                        href="https://www.instagram.com/moveisneriahoficial/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Instagram Neriah Móveis"
-                    >
-
+                <div class="redes-sociais">
+                    <a href="https://www.instagram.com/moveisneriahoficial/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                         <i class="fa-brands fa-instagram"></i>
-
                     </a>
 
-                    <a
-                        href="https://wa.me/5547988504149"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="WhatsApp Neriah Móveis"
-                    >
-
+                    <a href="https://wa.me/5547988504149" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                         <i class="fa-brands fa-whatsapp"></i>
-
                     </a>
-
                 </div>
-
             </div>
 
         </div>
 
-        <!-- DIREITOS AUTORAIS -->
-
-        <div class="copyright">
-
+        <div class="rodape-final">
             © 2026 Neriah Móveis — Todos os direitos reservados.
-
         </div>
-
     </footer>
 
-</body>
+    <!-- AMPLIAR FOTOS -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar produto" hidden>
+        <button class="lightbox-fechar" id="fecharLightbox" aria-label="Fechar imagem">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
 
+        <img id="lightboxImagem" src="" alt="">
+        <p id="lightboxNome"></p>
+    </div>
+
+</body>
 </html>
