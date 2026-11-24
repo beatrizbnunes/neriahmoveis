@@ -33,35 +33,38 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2. TÍTULO DIGITANDO NO BANNER
     // ==========================================
 
-    const titulo = document.getElementById("tituloDigitando");
+    const titulo = document.querySelector("#tituloHero .td-texto");
 
-    if (titulo) {
-        const texto = titulo.dataset.texto || "";
-        const movimentoReduzido = window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
+if (titulo) {
+    const texto = titulo.textContent.trim();
 
-        if (movimentoReduzido) {
-            titulo.textContent = texto;
-        } else {
-            let indice = 0;
+    const movimentoReduzido = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-            titulo.classList.add("digitando");
+    if (movimentoReduzido) {
+        titulo.textContent = texto;
+    } else {
+        let indice = 0;
 
-            function digitar() {
-                if (indice < texto.length) {
-                    titulo.textContent += texto.charAt(indice);
-                    indice++;
+        titulo.textContent = "";
+        titulo.classList.add("digitando");
 
-                    setTimeout(digitar, 55);
-                } else {
-                    titulo.classList.remove("digitando");
-                }
+        function digitar() {
+            if (indice < texto.length) {
+                titulo.textContent += texto.charAt(indice);
+                indice++;
+
+                setTimeout(digitar, 55);
+            } else {
+                titulo.classList.remove("digitando");
             }
-
-            setTimeout(digitar, 400);
         }
+
+        setTimeout(digitar, 400);
     }
+}
+    
 
 
     // ==========================================
