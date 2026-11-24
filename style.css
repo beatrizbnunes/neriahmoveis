@@ -150,7 +150,7 @@ nav a.menu-ativo::after {
             rgba(0,0,0,0.63),
             rgba(0,0,0,0.54)
         ),
-        url("banner.jpeg");
+        url("banner.png");
 
     background-position: center;
     background-size: cover;
